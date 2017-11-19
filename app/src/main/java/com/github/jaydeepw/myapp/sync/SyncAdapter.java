@@ -35,6 +35,8 @@ import android.util.Log;
  */
 class SyncAdapter extends AbstractThreadedSyncAdapter {
 
+    public static final String TAG = SyncAdapter.class.getName();
+
     /**
      * Constructor. Obtains handle to content resolver for later use.
      */
@@ -44,8 +46,8 @@ class SyncAdapter extends AbstractThreadedSyncAdapter {
 
     /**
      * Called by the Android system in response to a request to run the sync adapter. The work
-     * required to read data from the network, parse it, and store it in the content provider is
-     * done here. Extending AbstractThreadedSyncAdapter ensures that all methods within SyncAdapter
+     * required to read data from the network, parse it, and store it in the content provider
+     * should be done here. Extending AbstractThreadedSyncAdapter ensures that all methods within SyncAdapter
      * run on a background thread. For this reason, blocking I/O and other long-running tasks can be
      * run <em>in situ</em>, and you don't have to set up a separate thread for them.
      *
@@ -69,24 +71,24 @@ class SyncAdapter extends AbstractThreadedSyncAdapter {
         for (int i = 0; i < 15; i++) {
             try {
                 Thread.sleep(1000);
-                Log.i("SyncAdapter", ">>>> sleeping the thread: " + (i + 1));
+                Log.i(TAG, ">>>> sleeping the thread: " + (i + 1));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }   // end for
 
-        // write data sanity checks at the end.
+        // write DB data sanity checks at the end.
     }
 
     @Override
     public void onSyncCanceled() {
         super.onSyncCanceled();
-        Log.i("SyncAdapter", "");
+        Log.i(TAG, "");
     }
 
     @Override
     public void onSecurityException(Account account, Bundle extras, String authority, SyncResult syncResult) {
         super.onSecurityException(account, extras, authority, syncResult);
-        Log.i("SyncAdapter","Extras: " + extras);
+        Log.i(TAG,"Extras: " + extras);
     }
 }

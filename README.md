@@ -3,6 +3,8 @@ The bare minimum code that one will have to write to build a working sync adapte
 
 # Know and remember when using SyncAdapters in your apps
 - You will have to compulsorily use the `AccountManager` framework of Android.
+- You will have to compulsorily declare `StubProvider` in your app. You
+may choose not to use it though and use your own database for content storage.
 
 
 # Getting started
@@ -16,6 +18,10 @@ The bare minimum code that one will have to write to build a working sync adapte
 
 ```
 Note: In my experience, using `strings.xml` or any other way to declare
-`authorities` or `accountType` stops the sync adapter from working.
+'authorities' or 'accountType' stops the sync adapter from working.
 I know this sounds weird.
 ```
+
+# Inspiration
+- [UDI COHEN's outdated blog post.](http://blog.udinic.com/2013/07/24/write-your-own-android-sync-adapter) Yet thankful to it.
+- [Obsolete sync adapter github projects](https://github.com/search?utf8=%E2%9C%93&q=sync+adapter+language%3AJava&type=Repositories&ref=advsearch&l=Java&l=)
