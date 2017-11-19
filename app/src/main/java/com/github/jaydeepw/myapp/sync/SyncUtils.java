@@ -30,6 +30,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class SyncUtils {
 
+    static final String TAG = SyncUtils.class.getName();
+
     private static final long SYNC_FREQUENCY = TimeUnit.HOURS.toSeconds(1);  // 1 hour (in seconds)
 
     // Both the values below must match the account type specified in
@@ -38,6 +40,7 @@ public class SyncUtils {
     public static final String CONTENT_AUTHORITY = "com.example.app.authority";
 
     // this has to change and has to be unique per user
+    // this can be the userid. For google accounts, this is your gmail ID.
     private static final String ACCOUNT_NAME = "User facing name";
 
     /**
@@ -49,8 +52,7 @@ public class SyncUtils {
     public static void createSyncAccount(Context context) {
 
         // Create account, if it's missing. (Either first run, or user has deleted account.)
-        final String accountName = ACCOUNT_NAME;
-        Account account = new Account(accountName, SyncUtils.ACCOUNT_TYPE);
+        Account account = new Account(ACCOUNT_NAME, SyncUtils.ACCOUNT_TYPE);
         AccountManager accountManager =
                 (AccountManager) context.getSystemService(Context.ACCOUNT_SERVICE);
         if (accountManager.addAccountExplicitly(account, null, null)) {
@@ -62,10 +64,10 @@ public class SyncUtils {
             // on other scheduled syncs and network utilization.
             ContentResolver.addPeriodicSync(account, CONTENT_AUTHORITY,
                     new Bundle(), SYNC_FREQUENCY);
-            Log.i("SyncUtils", "Account added successfully!");
+            Log.i(TAG, "Account added successfully!");
             // newAccount = true;
         } else {
-            Log.d("SyncUtils", "Account already added, not adding again...");
+            Log.d(TAG, "Account already added, not adding again...");
         }
     }
 
@@ -94,14 +96,14 @@ public class SyncUtils {
      * the OS additional freedom in scheduling your sync request.
      */
     public static void forceRefreshAll(Context context) {
-        Bundle b = new Bundle();
+        Bundle bundle = new Bundle();
         // Disable sync backoff and ignore sync preferences.
         // In other words...perform sync NOW!
-        b.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
-        b.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
+        bundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
+        bundle.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
         ContentResolver.requestSync(
                 getAccount(context),        // Sync account
                 CONTENT_AUTHORITY,          // Content authority
-                b);         // Extras
+                bundle);         // Extras
     }
 }

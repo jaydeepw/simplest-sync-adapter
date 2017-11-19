@@ -15,6 +15,7 @@ may choose not to use it though and use your own database for content storage.
 - You will have to define `contentAuthority` in `syncadapter.xml`
 - Same will have to be defined in `SyncUtils.java`
 - Same will have to be defined in `AndroidManifest.xml`
+- Change sync time `SYNC_FREQUENCY` to your convenience in `SyncUtils` class
 
 ```
 Note: In my experience, using `strings.xml` or any other way to declare

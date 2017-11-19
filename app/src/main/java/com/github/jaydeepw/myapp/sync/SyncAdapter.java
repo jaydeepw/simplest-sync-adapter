@@ -35,7 +35,7 @@ import android.util.Log;
  */
 class SyncAdapter extends AbstractThreadedSyncAdapter {
 
-    public static final String TAG = SyncAdapter.class.getName();
+    static final String TAG = SyncAdapter.class.getName();
 
     /**
      * Constructor. Obtains handle to content resolver for later use.
