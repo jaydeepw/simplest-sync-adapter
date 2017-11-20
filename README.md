@@ -23,6 +23,13 @@ Note: In my experience, using `strings.xml` or any other way to declare
 I know this sounds weird.
 ```
 
+# Donations!
+If this project has helped you understand issues, be productive by using this library in your app or just being nice to me, you can always donate me
+
+* **Using Bitcoins**: at this address `3QJEmgqXsT1CFLtURYWxzmww59DdKYVwNk`
+
+* **Using Paypal**: [Pay Jay](https://www.paypal.me/jaydeepw)
+
 # Inspiration
 - [UDI COHEN's outdated blog post.](http://blog.udinic.com/2013/07/24/write-your-own-android-sync-adapter) Yet thankful to it.
 - [Obsolete sync adapter github projects](https://github.com/search?utf8=%E2%9C%93&q=sync+adapter+language%3AJava&type=Repositories&ref=advsearch&l=Java&l=)
